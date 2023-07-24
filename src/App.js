@@ -1,6 +1,8 @@
 import './App.css';
 import contacts from './contacts.json'
 import { useState } from 'react';
+import { Button, Space } from 'antd';
+
 
 function App() {
   const firstFive = contacts.slice(0, 5)
@@ -33,12 +35,14 @@ function App() {
 
   return (
     <div className="App">
-      <div>
+      <div className="centered-container">
       <h1>IronContacts</h1>
-      <button onClick={addRandomContact}>Add Random Contact</button>
-      <button onClick={sortPopularity}>Sort by popularity</button>
-      <button onClick={sortAlphabetically}>Sort by name</button>
-      <table>
+      <Space wrap>
+        <Button type="primary" onClick={addRandomContact}>Add Random Contact</Button>
+        <Button type="primary" onClick={sortPopularity}>Sort by popularity</Button>
+        <Button type="primary" onClick={sortAlphabetically}>Sort by name</Button>
+      </Space>
+      <table className='table'>
         <thead>
           <tr>
             <th>Picture</th>
@@ -59,7 +63,7 @@ function App() {
               <td>{contact.popularity}</td>
               <td>{contact.wonOscar ? <p>🏆</p> : <p></p>}</td>
               <td>{contact.wonEmmy ? <p>🏆</p> : <p></p>}</td>
-              <td><button onClick={() => deleteContact(contact.id)}>Delete</button></td>
+              <td><Button type="primary" danger onClick={() => deleteContact(contact.id)}>Delete</Button></td>
             </tr>
           ))}
         </tbody>
